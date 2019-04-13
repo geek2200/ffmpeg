@@ -29,3 +29,21 @@ ffmpeg -loop 1 -i thumb.jpg -c:v libx264 -t 1 -pix_fmt yuv420p imagevideo.mp4
 ffmpeg -i imagevideo.mp4 -i videowatermarked.mp4 -i motion.mp4 -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0][2:v:0][2:a:0]concat=n=3:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mp4
 ```
 
+# bodyvids :
+1. read file from db and extract filename and muscle and name
+2. based on muscle choose banner
+3. overlay main banner on videos and output name is modify1 
+```
+ffmpeg -i test.mp4 -i first.mp4 -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,0,3)'" o.mp4
+```
+4. overlay lower banner on modify2 and name is modify2
+```
+ffmpeg -i o.mp4 -i banner.mov -filter_complex "[0:v][1:v]overlay=0:200:enable='between(t,0,13)'" o2.mp4
+```
+5. overlay top banner and modify3 
+```
+ffmpeg -i o2.mp4 -i top.mov -filter_complex "[0:v][1:v]overlay=0:0:enable='between(t,0,20)'" o3.mp4
+```
+6. and name text by ffmpeg in the lower right (find way for add perisan name)
+
+
