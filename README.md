@@ -46,4 +46,27 @@ ffmpeg -i o2.mp4 -i top.mov -filter_complex "[0:v][1:v]overlay=0:0:enable='betwe
 ```
 6. and name text by ffmpeg in the lower right (find way for add perisan name)
 
+# TV maker and add text as Wartermark
+
+```
+$file = __DIR__.'/test.mp4';
+$dest = __DIR__.'/test1.mp4';
+$option =[
+    'targetFeed' => \InstagramAPI\Constants::FEED_STORY,
+    //'blurredBorder'=>true,
+    'operation'=> 2, // 1 is for crop, 2 is for expand
+    'bgColor'=>[0,0,0]
+
+];
+$fontfile = __DIR__.'/../../../public/fonts/Gandom.ttf';
+//$video = new \InstagramAPI\Media\Video\InstagramVideo($file,$option);
+//copy($video->getFile(),$dest);
+$s = '"drawtext=text_shaping=1:fontfile='.$fontfile.': \text=\'سلام\': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.5: \
+boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2"';
+$d = "ffmpeg -i \"".$dest."\" -vf ".$s." -codec:a copy output.mp4";
+echo $d;
+//dd();
+shell_exec($d);
+```
+
 
