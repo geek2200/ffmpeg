@@ -69,4 +69,9 @@ echo $d;
 shell_exec($d);
 ```
 
+# Draw text with fribidi
+```
+D:\ff\media-autobuild_suite-master\local64\bin-video\ffmpeg -i test.mp4 -vf drawtext="text_shaping=1:fontfile=E\/:/projectNew/assets/fonts/calibri.ttf':text='سلام':fontcolor=white:fontsize=36: box=1: boxcolor=red@0.5:boxborderw=5: x=(w-text_w)/2: y=100" -codec:a copy out.mp4
+```
+
 
