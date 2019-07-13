@@ -77,4 +77,8 @@ D:\ff\media-autobuild_suite-master\local64\bin-video\ffmpeg -i test.mp4 -vf draw
 ```
 ffmpeg -y -i test.mp4 -i s1.mp3 -c:v copy -map 0:v:0 -map 1:a:0 -c:a aac -b:a 192k -shortest new.mp4
 ```
-
+# Split vdoeo
+create new video from 1 sec to 1 min
+```
+ffmpeg -i input.mov -ss 00:00:01 -to 00:01:00 -c:v copy -c:a copy part1.mp4
+```
